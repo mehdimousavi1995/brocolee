@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MemeCoin</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background-color: darkseagreen;
+      background-image: url('assets/background.png');
+      background-repeat: repeat;
+      background-size: 48px;
+      color: white;
+    }
+
+    header {
+      background: #0a481d;
+      padding: 1em 0;
+      position: relative;
+    }
+
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      margin: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    header h1 img {
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .social-buttons {
+      display: flex;
+      align-items: center;
+    }
+
+    .social-buttons a {
+      color: white;
+      text-decoration: none;
+      margin-left: 10px;
+    }
+
+    .social-buttons img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+    }
+
+    #hero {
+      color: white;
+      padding: 50px 0;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .coin-info {
+      text-align: center;
+      margin: 40px 0;
+      position: relative;
+    }
+
+    .coin-info img {
+      width: 550px; /* Reasonable size for PC */
+      height: auto;
+      border-radius: 50%;
+      margin-bottom: 50px;
+    }
+
+    .coin-info h2, .coin-info p {
+      margin: 10px 0;
+    }
+
+    .contract-address {
+      position: absolute;
+      bottom: -90px;
+      margin-bottom: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #0a481d;
+      color: white;
+      padding: 15px 15px;
+      border-radius: 30px;
+      font-size: 18px;
+    }
+
+    .slider {
+      position: relative;
+      max-width: 600px;
+      margin: 20px auto;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slides img {
+      width: 600px; /* Fixed size */
+      height: 500px; /* Fixed size */
+      flex-shrink: 0;
+    }
+
+    .slider .prev, .slider .next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .slider .prev {
+      left: 10px;
+    }
+
+    .slider .next {
+      right: 10px;
+    }
+
+    footer {
+      background: #0a481d;
+      color: white;
+      text-align: center;
+      padding: 1em 0;
+    }
+
+    .meme-box {
+      display: inline-block;
+      padding: 15px 25px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #0a481d;
+      color: white;
+      border-radius: 30px;
+      font-size: 28px;
+    }
+
+    .slider-header {
+      margin: 20px 0;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .tokenomics {
+      background-color: #0a481d;
+      color: white;
+      text-align: center;
+      padding: 50px 0;
+    }
+
+    .tokenomics h2 {
+      margin-bottom: 20px;
+      font-size: 36px;
+      font-weight: bold;
+    }
+
+    .tokenomics-table {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      border-collapse: collapse;
+      background-color: darkseagreen;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .tokenomics-table th, .tokenomics-table td {
+      padding: 15px;
+      text-align: center;
+      border-bottom: 1px solid #0a481d;
+    }
+
+    .tokenomics-table th {
+      background-color: #0a481d;
+    }
+
+    .tokenomics-table td {
+      background-color: #0a481d;
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      header .container {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      header h1 img {
+        width: 60px;
+        height: 60px;
+      }
+
+      .coin-info img {
+        width: 200px; /* Smaller image for mobile */
+      }
+
+      .slides img {
+        width: 300px;
+        height: 250px;
+      }
+
+      .contract-address {
+        font-size: 12px;
+      }
+
+      section {
+        padding: 20px 0;
+      }
+
+      header h1 {
+        font-size: 1.2em;
+        flex: 1;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .social-buttons {
+        flex-direction: row;
+      }
+
+      .social-buttons a {
+        margin-left: 10px;
+      }
+
+      .social-buttons img {
+        width: 25px;
+        height: 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1>
+      <img src="assets/logo.png" alt="MemeCoin Icon">
+      Broco Lee
+    </h1>
+    <div class="social-buttons">
+      <a href="https://twitter.com"><img src="assets/x_logo.png" alt="Twitter"></a>
+      <a href="https://telegram.org"><img src="assets/telegram_logo12.png" alt="Telegram"></a>
+    </div>
+  </div>
+</header>
+
+<section id="hero">
+  <div class="container">
+    <h2 class="meme-box">$BROCOLEE</h2>
+    <br>
+    <br>
+    <br>
+    <div class="coin-info">
+      <img src="assets/main_image.png" alt="MemeCoin Image">
+      <br>
+      <br>
+      <div class="contract-address">
+        <div style="margin-bottom: 5px;">Contract Address:</div>
+        0x6bd81aAd9B25Ad1E0b99c47eD01B34eAcF4B8bE7
+      </div>
+      <br>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="meme-box">Memes:</div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="slider">
+      <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+      <div class="slides" id="slides">
+        <img src="assets/sl1.jpeg" alt="Slide 1">
+        <img src="assets/sl2.jpeg" alt="Slide 2">
+        <img src="assets/sl3.png"  alt="Slide 3">
+        <img src="assets/sl4.jpeg" alt="Slide 4">
+        <img src="assets/sl5.jpeg" alt="Slide 5">
+        <img src="assets/sl6.jpeg" alt="Slide 6">
+        <img src="assets/sl7.jpeg" alt="Slide 7">
+        <img src="assets/sl8.jpeg" alt="Slide 8">
+        <img src="assets/sl9.jpeg" alt="Slide 9">
+      </div>
+      <button class="next" onclick="moveSlide(1)">&#10095;</button>
+    </div>
+  </div>
+</section>
+
+<section class="tokenomics">
+  <div class="container">
+    <h2>Tokenomics</h2>
+    <table class="tokenomics-table">
+      <thead>
+      <tr>
+        <th>Token Name</th>
+        <th>Token Ticker</th>
+        <th>Supply</th>
+        <th>Buy Tax</th>
+        <th>Sell Tax</th>
+        <th>Chain</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>BrocoLee Coin</td>
+        <td>$BROCOLEE</td>
+        <td>1,000,000,000</td>
+        <td>5%</td>
+        <td>5%</td>
+        <td>Ethereum</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2024 BrocoLee. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  let currentSlide = 0;
+
+  function moveSlide(n) {
+    const slides = document.getElementById('slides');
+    const totalSlides = slides.children.length;
+    currentSlide = (currentSlide + n + totalSlides) % totalSlides;
+    const slideWidth = slides.children[0].clientWidth;
+    slides.style.transform = 'translateX(' + (-currentSlide * slideWidth) + 'px)';
+  }
+
+  window.addEventListener('resize', () => {
+    const slides = document.getElementById('slides');
+    const slideWidth = slides.children[0].clientWidth;
+    slides.style.transform = 'translateX(' + (-currentSlide * slideWidth) + 'px)';
+  });
+</script>
+</body>
+</html>
